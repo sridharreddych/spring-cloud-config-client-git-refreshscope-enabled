@@ -1,10 +1,13 @@
 package sree.demo;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RefreshScope
 @Controller
 public class RateController {
 	
@@ -19,18 +22,18 @@ public class RateController {
 	
 	@Value("${connstring}")
 	String connstring;
-	
+
 	@RequestMapping("/rate")
 	public String getRate(Model m) {
-		
+
 		m.addAttribute("rateamount", rate);
 		m.addAttribute("lanes", lanecount);
 		m.addAttribute("tollstart", tollstart);
 		m.addAttribute("connstring", connstring);
-		
-		//name of the view
-		
+				
+		//name of view
 		return "rateview";
 	}
+
 
 }
